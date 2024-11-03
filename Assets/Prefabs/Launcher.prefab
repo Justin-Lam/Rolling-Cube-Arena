@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardMultiplier: 5
   upMultiplier: 1
-  launchStrength: 10
+  launchStrength: 15
 --- !u!1 &9012355072404329274
 GameObject:
   m_ObjectHideFlags: 0
