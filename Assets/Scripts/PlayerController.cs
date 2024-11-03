@@ -112,8 +112,8 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		rb.AddForce(moveDirection * moveSpeed);
-		rb.AddTorque(rotateDirection * rotateSpeed);
+		rb.AddRelativeForce(moveDirection * moveSpeed);
+		//rb.AddRelativeForce(rotateDirection * rotateSpeed);
 	}
 
 	bool IsGrounded()
