@@ -1,0 +1,7 @@
+Todo:
+turn off raycast target for text on buttons
+
+Bugs:
+enemy names rotate
+enemies and projectiles can spawn unchilded from their pool game objects
+SceneManager doesn't delete its duplicates
