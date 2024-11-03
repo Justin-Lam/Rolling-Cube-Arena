@@ -2,6 +2,7 @@ Todo:
 turn off raycast target for text on buttons
 
 Bugs:
+can unpause the game in win/loss screen
 enemy names rotate
 enemies and projectiles can spawn unchilded from their pool game objects
 SceneManager doesn't delete its duplicates
