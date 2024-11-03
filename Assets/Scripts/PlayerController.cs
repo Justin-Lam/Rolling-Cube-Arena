@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -37,10 +33,10 @@ public class PlayerController : MonoBehaviour
 		startPosition = transform.position;
 		rb = GetComponent<Rigidbody>();
 		// got this from https://discussions.unity.com/t/using-raycast-to-determine-if-player-is-grounded/85134/2
-		distToGround = (gameObject.GetComponent<BoxCollider>().size.y / 2) * Mathf.Sqrt(2);
+		distToGround = (gameObject.GetComponentInChildren<BoxCollider>().size.y / 2) * Mathf.Sqrt(2);
 
 		// Initialize color
-		GetComponent<Renderer>().material.color = new Color(PlayerPrefs.GetFloat("PlayerColor_R"), PlayerPrefs.GetFloat("PlayerColor_G"), PlayerPrefs.GetFloat("PlayerColor_B"));
+		GetComponentInChildren<Renderer>().material.color = new Color(PlayerPrefs.GetFloat("PlayerColor_R"), PlayerPrefs.GetFloat("PlayerColor_G"), PlayerPrefs.GetFloat("PlayerColor_B"));
 	}
 
 	public void OnStartGame()
