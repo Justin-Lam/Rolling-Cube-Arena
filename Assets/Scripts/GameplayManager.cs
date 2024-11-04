@@ -27,7 +27,10 @@ public class GameplayManager : MonoBehaviour
 	[SerializeField] int numKnockOffsToWin = 3;
 	int numKnockOffs = 0;
 	[SerializeField] PlayerController playerController;
-	[SerializeField] GameObject launcher;
+	[SerializeField] GameObject launcherPrefab;
+	[SerializeField] int numLaunchers = 1;
+	[SerializeField] GameObject elevatorPrefab;
+	[SerializeField] int numElevators = 1;
 	[SerializeField] Transform groundTransform;
 
 	// Methods
@@ -83,10 +86,22 @@ public class GameplayManager : MonoBehaviour
 		EnemySpawner.Instance.ReleaseAll();
 		EnemySpawner.Instance.StartSpawning();
 
-		// Launcher
-		// random position and rotation
-		launcher.transform.position = new Vector3(Random.Range(-groundTransform.localScale.x / 2, groundTransform.localScale.x / 2), 0, Random.Range(-groundTransform.localScale.z / 2, groundTransform.localScale.z / 2));
-		launcher.transform.Rotate(new Vector3(0, Random.Range(0, 360), 0));
+		// Launchers
+		// spawn launchers with random position and rotation
+		for (int i = 0; i < numLaunchers; i++)
+		{
+			GameObject launcher = Instantiate(launcherPrefab);
+			launcher.transform.position = new Vector3(Random.Range(-groundTransform.localScale.x / 2, groundTransform.localScale.x / 2), 0, Random.Range(-groundTransform.localScale.z / 2, groundTransform.localScale.z / 2));
+			launcher.transform.Rotate(0, Random.Range(0, 360), 0);
+		}
+
+		// Elevators
+		// spawn elevators with random position
+		for (int i = 0; i < numElevators; i++)
+		{
+			GameObject elevator = Instantiate(elevatorPrefab);
+			elevator.transform.position = new Vector3(Random.Range(-groundTransform.localScale.x / 2, groundTransform.localScale.x / 2), 0, Random.Range(-groundTransform.localScale.z / 2, groundTransform.localScale.z / 2));
+		}
 
 		// UI & HUD
 		// show and set things
