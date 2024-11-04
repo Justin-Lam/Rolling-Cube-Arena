@@ -1861,9 +1861,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911b5bfbb2fab64da938eb71d28adb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 2094224626}
   enemyPrefab: {fileID: 4080372995390935494, guid: 93e5239421866e84cb56394c176765c5, type: 3}
-  spawnDelay: 5
+  groundTransform: {fileID: 329128994}
+  playerTransform: {fileID: 2094224626}
+  initialAmountEnemies: 5
+  spawnDelay: 10
   poolDefaultSize: 10
   poolMaxSize: 20
   minEnemySize: 0.5

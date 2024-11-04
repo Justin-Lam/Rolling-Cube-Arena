@@ -83,8 +83,7 @@ public class GameplayManager : MonoBehaviour
 
 		// Enemy Spawner
 		// release all enemies and start spawning
-		EnemySpawner.Instance.ReleaseAll();
-		EnemySpawner.Instance.StartSpawning();
+		EnemySpawner.Instance.OnStartGame();
 
 		// Launchers
 		// spawn launchers with random position and rotation

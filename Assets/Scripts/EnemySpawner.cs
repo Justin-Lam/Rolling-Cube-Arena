@@ -22,8 +22,10 @@ public class EnemySpawner : MonoBehaviour
 	}
 
 	// Attributes
-	[SerializeField] Transform playerTransform = null;		// to give to enemies so they can follow the player
-	[SerializeField] GameObject enemyPrefab = null;
+	[SerializeField] GameObject enemyPrefab;
+	[SerializeField] Transform groundTransform;
+	[SerializeField] Transform playerTransform;     // to give to enemies so they can follow the player
+	[SerializeField] int initialAmountEnemies = 5;
 	[SerializeField] float spawnDelay = 5f;
 	[SerializeField] int poolDefaultSize = 10;
 	[SerializeField] int poolMaxSize = 20;
@@ -67,18 +69,32 @@ public class EnemySpawner : MonoBehaviour
 		SpawnEnemiesCoroutine = SpawnEnemiesLoop(spawnDelay);
 	}
 
+	public void OnStartGame()
+	{
+		ReleaseAll();
+
+		// Spawn initial enemies
+		for (int i = 0; i < initialAmountEnemies; i++)
+		{
+			SpawnEnemy();
+		}
+
+		StartSpawning();
+	}
+
 	IEnumerator SpawnEnemiesLoop(float delay)
 	{
 		while (true)
 		{
-			SpawnEnemy();
 			yield return new WaitForSeconds(delay);
+			SpawnEnemy();
 		}
 	}
 	void SpawnEnemy()
 	{
 		GameObject go = enemyPool.Get();
-		go.GetComponent<Enemy>().Initialize(transform.position, playerTransform, Random.Range(minEnemySize, maxEnemySize));
+		Vector3 spawnPosition = new Vector3(Random.Range(-groundTransform.localScale.x / 2, groundTransform.localScale.x / 2), Random.Range(1, 25), Random.Range(-groundTransform.localScale.z / 2, groundTransform.localScale.z / 2));
+		go.GetComponent<Enemy>().Initialize(spawnPosition, playerTransform, Random.Range(minEnemySize, maxEnemySize));
 	}
 
 	public void ReleaseAll()
@@ -92,7 +108,7 @@ public class EnemySpawner : MonoBehaviour
 			}
 		}
 	}
-	public void StartSpawning()
+	void StartSpawning()
 	{
 		StartCoroutine(SpawnEnemiesCoroutine);
 	}
