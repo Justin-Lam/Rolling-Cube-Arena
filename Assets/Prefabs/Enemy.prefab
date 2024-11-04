@@ -150,6 +150,11 @@ MonoBehaviour:
   moveSpeed: 10
   rotateSpeed: 10
   groundedDistFromGroundPadding: 0.1
+  explosionRange: 2.5
+  explosionDelay: 1.5
+  explosionStrength: 500
+  explosionRadius: 5
+  explosionUpwardsModifier: 1
 --- !u!1 &4700495161481776398
 GameObject:
   m_ObjectHideFlags: 0

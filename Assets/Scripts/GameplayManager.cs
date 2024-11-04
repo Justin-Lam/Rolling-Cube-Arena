@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -32,6 +29,7 @@ public class GameplayManager : MonoBehaviour
 	[SerializeField] GameObject elevatorPrefab;
 	[SerializeField] int numElevators = 1;
 	[SerializeField] Transform groundTransform;
+	List<GameObject> launchersAndElevators = new List<GameObject>();
 
 	// Methods
 	void Start()
@@ -85,6 +83,14 @@ public class GameplayManager : MonoBehaviour
 		// release all enemies and start spawning
 		EnemySpawner.Instance.OnStartGame();
 
+		// Launchers & Elevators
+        foreach (GameObject go in launchersAndElevators)
+        {
+			Destroy(go);
+        }
+		if (launchersAndElevators.Count > 0)
+		launchersAndElevators.Clear();
+
 		// Launchers
 		// spawn launchers with random position and rotation
 		for (int i = 0; i < numLaunchers; i++)
@@ -92,6 +98,8 @@ public class GameplayManager : MonoBehaviour
 			GameObject launcher = Instantiate(launcherPrefab);
 			launcher.transform.position = new Vector3(Random.Range(-groundTransform.localScale.x / 2, groundTransform.localScale.x / 2), 0, Random.Range(-groundTransform.localScale.z / 2, groundTransform.localScale.z / 2));
 			launcher.transform.Rotate(0, Random.Range(0, 360), 0);
+			launchersAndElevators.Add(launcher);
+
 		}
 
 		// Elevators
@@ -100,6 +108,7 @@ public class GameplayManager : MonoBehaviour
 		{
 			GameObject elevator = Instantiate(elevatorPrefab);
 			elevator.transform.position = new Vector3(Random.Range(-groundTransform.localScale.x / 2, groundTransform.localScale.x / 2), 0, Random.Range(-groundTransform.localScale.z / 2, groundTransform.localScale.z / 2));
+			launchersAndElevators.Add(elevator);
 		}
 
 		// UI & HUD

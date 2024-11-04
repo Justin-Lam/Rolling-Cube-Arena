@@ -3911,7 +3911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3a9bcb33464a1438cec83905d8240b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numKnockOffsToWin: 3
+  numKnockOffsToWin: 5
   playerController: {fileID: 2094224628}
   launcherPrefab: {fileID: 609372744016303546, guid: b9f3d3ddb3bbe454f95c820d9acfa760, type: 3}
   numLaunchers: 7
